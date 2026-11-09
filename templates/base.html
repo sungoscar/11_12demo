@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}投稿審查系統{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="主要導覽">
+      <a class="brand" href="/">投稿審查<span>大學課堂展示系統</span></a>
+      {% if user %}
+      <div class="account">
+        <span>{{ user.username }} <span class="badge">{{ role_names[user.role] }}</span></span>
+        <form method="post" action="/logout">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button class="button secondary" type="submit">登出</button>
+        </form>
+      </div>
+      {% else %}
+      <a class="nav-link" href="/login">登入系統 <span aria-hidden="true">→</span></a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="container main-content">{% block content %}{% endblock %}</main>
+  <footer class="container site-footer">投稿審查系統 · 共用登入與角色權限展示</footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ role_title }} · 投稿審查系統{% endblock %}
+{% block content %}
+<section class="hero compact">
+  <p class="eyebrow">您的專屬工作空間</p>
+  <h1>{{ role_title }}</h1>
+  <p class="lead">{{ user.username }}，您好。{{ description }}</p>
+</section>
+<section class="card status-card">
+  <span class="badge">已登入</span><h2>帳號資訊</h2>
+  <dl><div><dt>使用者帳號</dt><dd>{{ user.username }}</dd></div><div><dt>目前角色</dt><dd>{{ role_names[user.role] }}</dd></div></dl>
+  <p class="muted">本階段提供登入與權限展示，尚未開放稿件操作。</p>
+</section>
+{% endblock %}

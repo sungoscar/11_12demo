@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}登入 · 投稿審查系統{% endblock %}
+{% block content %}
+<section class="login-layout">
+  <div class="login-intro"><p class="eyebrow">歡迎回來</p><h1>您的下一步，<br>從這裡開始。</h1><p class="lead">使用您的帳號登入，系統將自動引導您前往作者或編輯首頁。</p></div>
+  <div class="card login-card">
+    <h2>登入系統</h2><p class="muted">請輸入帳號與密碼</p>
+    {% if error %}<div class="alert" role="alert">{{ error }}</div>{% endif %}
+    <form method="post" action="/login" class="login-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label for="username">帳號</label>
+      <input id="username" name="username" value="{{ username | default('') }}" autocomplete="username" maxlength="50" required>
+      <label for="password">密碼</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" maxlength="1024" required>
+      <button class="button full-width" type="submit">登入</button>
+    </form>
+    <p class="form-note">如需帳號或忘記密碼，請聯絡系統管理員。</p>
+  </div>
+</section>
+{% endblock %}
